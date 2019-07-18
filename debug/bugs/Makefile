@@ -1,14 +1,14 @@
 .PHONY: default help object executable all clean segfault dynamic static nobugs
-CC = gcc 
-CFLAGS = 
+CC=gcc 
+CFLAGS=-g 
 
-LD = $(CC)
+LD=$(CC)
 
-SOURCE_C = $(wildcard *.c)
-OBJECTS_C = $(patsubst %.c, %_c.o, $(SOURCE_C))
-EXECUTABLES = $(patsubst %.c, %.e, $(SOURCE_C))
+SOURCE_C=$(wildcard *.c)
+OBJECTS_C=$(patsubst %.c, %_c.o, $(SOURCE_C))
+EXECUTABLES=$(patsubst %.c, %.e, $(SOURCE_C))
 
-default: all
+default:all
 
 help:
 	@echo "\
