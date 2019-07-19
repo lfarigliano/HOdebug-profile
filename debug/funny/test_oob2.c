@@ -3,6 +3,7 @@
 
 #define DIM 1039596
 
+//#define DIM 10
 
 int main(int argc, char *argv[])
 {
