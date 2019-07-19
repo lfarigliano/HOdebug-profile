@@ -26,12 +26,12 @@ void mat_Tmat_mul( float * A, float * C ){
 
   for (i = 0; i < SIZE; i++)
     for (j = 0; j < SIZE; j++)
-      temp[(i * SIZE) + j] = A[(i * SIZE) + j];
+      temp[(j * SIZE) + i] = A[(i * SIZE) + j];
 
   for (i = 0; i < SIZE; i++)
     for (j = 0; j < SIZE; j++)
       for (k = 0; k < SIZE; k++)
-        C[(i * SIZE) + j] += A[(i * SIZE ) + k] * temp[(i * SIZE) + j];
+        C[(i * SIZE) + j] += A[(i * SIZE ) + k] * temp[(k * SIZE) + j];
   
 }
 
