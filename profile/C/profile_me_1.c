@@ -16,30 +16,38 @@ void second_assign(int i1, int i2, double * a, double * b, double * c )
 int main( int argc, char * argv[] )
 {
 
-  double a[SIZE][SIZE], b[SIZE][SIZE], c[SIZE][SIZE];
+  double *a, *b, *c;
+
+ a = (double *) malloc( SIZE * SIZE * sizeof(double) );
+ b = (double *) malloc( SIZE * SIZE * sizeof(double) );
+ c = (double *) malloc( SIZE * SIZE * sizeof(double) );
 
   int i, j; 
+  
+  printf("%d %i\n", a[0],SIZE);
  
   for( i = 0; i < SIZE; i++ ){
     for( j = 0; j < SIZE; j++ ){
 
-      a[i][j] = 1.0;
-      b[i][j] = 2.0;
-      c[i][j] = 3.0;
+      a[i*SIZE+j] = 1.0;
+      b[i*SIZE+j] = 2.0;
+      c[i*SIZE+j] = 3.0;
     }
   }
+  printf("%d\n", a[0]);
 
    for( i = 0; i < SIZE; i++ ){
     for( j = 0; j < SIZE; j++ ){
-      first_assign(i, j, &a[0][0], &b[0][0], &c[0][0]);
+      first_assign(i, j, &a[0], &b[0], &c[0]);
     }
   }
+  printf("%d\n", a[0]);
 
   for( i = 0; i < SIZE; i++ ){
     for( j = 0; j < SIZE; j++ ){
-      second_assign(i, j, &a[0][0], &b[0][0], &c[0][0]);
+      second_assign(i, j, &a[0], &b[0], &c[0]);
     }
   }
-
+  printf("%d\n", a[0]);
   return 0;
 }

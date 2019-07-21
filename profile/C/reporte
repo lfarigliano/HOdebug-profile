@@ -1,0 +1,46 @@
+En primer lugar se corrieron los ejecutables con el comando time, y se 
+observa que a mediada que avanza la optimización en grado, los tiempos 
+disminuyen, con esta forma de hacer profile. No se puede sacar mucha
+mas información, que la ya expuesta.
+Optimizando a -O0 y -pg
+corriendo gprof profile_me_1_O0_pg.e gmon.out > info
+sacamos info, que se detalla debajo
+
+Each sample counts as 0.01 seconds.
+  %   cumulative   self              self     total           
+ time   seconds   seconds    calls  ns/call  ns/call  name    
+ 73.86      1.37     1.37 25000000    54.95    54.95  first_assign
+ 19.95      1.74     0.37                             main
+  6.20      1.86     0.12 25000000     4.61     4.61  second_assign 
+  
+  observando que es mas lenta first_assign, debido a como corren los 
+  loop, en first corren alreves, por lo que su tiempo de ejecución es 
+  mayor de lo que deberia ser,
+  Cuando optimizamos con 3 ese tiempo disminuye, ya queel compilador
+  optimiza de manera automatica como corren los loops.
+  
+
+  Corriendolo a partir de perl, el resultado es el sigueinte:
+
+Performance counter stats for './profile_me_1_O0.e':
+
+       1916.968837      task-clock (msec)         #    1.000 CPUs utilized          
+                12      context-switches          #    0.006 K/sec                  
+                 0      cpu-migrations            #    0.000 K/sec                  
+           146,536      page-faults               #    0.076 M/sec                  
+     6,053,153,137      cycles                    #    3.158 GHz                    
+     4,813,019,590      stalled-cycles-frontend   #   79.51% frontend cycles idle   
+     4,232,976,078      instructions              #    0.70  insn per cycle         
+                                                  #    1.14  stalled cycles per insn
+       252,066,291      branches                  #  131.492 M/sec                  
+           316,806      branch-misses             #    0.13% of all branches        
+
+       1.917617951 seconds time elapsed
+
+       1.744658000 seconds user
+       0.172064000 seconds sys
+                              
+
+       Dando un detalle de los recursos y funciones utilizadas del codigo
+
+
